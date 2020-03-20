@@ -1,7 +1,7 @@
 # org: gokaykucuk
-app: trip-shuffler
+# app: trip-shuffler
 # NOTE: update this with your service name
-service: trip-shuffler
+service: coronablue-backend
 
 plugins:
   - serverless-offline
@@ -10,9 +10,10 @@ provider:
   name: aws
   runtime: nodejs10.x
   stage: ${opt:stage, 'dev'}
-  region: eu-west-1
+  region: eu-central-1
   environment:
     ONESIGNAL_API_KEY: ${env:ONESIGNAL_API_KEY}
+    DYNAMODB_TABLE_NAME: coronablue-${opt:stage, 'dev'}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -50,3 +51,5 @@ functions:
     handler: src/db/Collections.DropAll
   createIndexes:
     handler: src/db/Indexes.CreateAll
+resources:
+  - ${file(resources/dynamodb-table.yml)}
