@@ -4,14 +4,14 @@ Resources:
     Properties:
       TableName: coronablue-${opt:stage, 'dev'}
       AttributeDefinitions:
-        - AttributeName: userId
+        - AttributeName: senderDeviceId
           AttributeType: S
-        - AttributeName: noteId
+        - AttributeName: seenDeviceId
           AttributeType: S
       KeySchema:
-        - AttributeName: userId
+        - AttributeName: senderDeviceId
           KeyType: HASH
-        - AttributeName: noteId
+        - AttributeName: seenDeviceId
           KeyType: RANGE
       # Set the capacity to auto-scale
       BillingMode: PAY_PER_REQUEST
