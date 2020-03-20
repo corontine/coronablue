@@ -18,6 +18,7 @@ provider:
     - Effect: "Allow"
       Action:
         - "lambda:*"
+        - "dynamodb:*"
       Resource:
         - "*"
   # To load environment variables externally

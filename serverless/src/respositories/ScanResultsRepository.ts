@@ -1,22 +1,15 @@
 import { DynamoDB } from 'aws-sdk';
 
-type ScanResult = {
-    scanType: string,
-    deviceId: string,
-    seenDeviceIds: Array<string>,
-    timestamp: Date
-};
-
 type ScanResultAsParams = {
     TableName: string,
     Item:{
         senderDeviceId: string,
         seenDeviceId: string,
-        timeStamp: Date
+        timestamp: string
     }
 }
 
-export const CreateScanResult = async (scanResult: ScanResult) => {
+export const CreateScan = async (scanResult: Scan) => {
 
     const docClient = new DynamoDB.DocumentClient();
 
@@ -28,11 +21,11 @@ export const CreateScanResult = async (scanResult: ScanResult) => {
             Item: {
                 senderDeviceId: `${scanType}_${scanResult.deviceId}`,
                 seenDeviceId: `${scanType}_${seenDeviceId}`,
-                timeStamp: scanResult.timestamp
+                timestamp: new Date().toISOString()
             }
         };
-        const putResult = await docClient.put(scanResultAsParams).promise();
-        console.log(putResult);
+        await docClient.put(scanResultAsParams).promise();
     }
+    return true
 };
 
