@@ -36,13 +36,12 @@ functions:
     events:
       - http:
           path: scan/create
-          merhod: post
+          method: post
   createAlert:
     handler: src/controllers/Alert.CreateAlert
     events:
       - http:
           path: scan/create
-          merhod: post
-
+          method: post
 resources:
   - ${file(resources/dynamodb-table.yml)}
