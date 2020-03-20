@@ -1,3 +1,3 @@
-export const Handler = (event: any, context: any) => {
+export const CreateScanResult = (event: any, context: any) => {
 
 };

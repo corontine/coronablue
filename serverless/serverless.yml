@@ -31,25 +31,18 @@ provider:
 
 
 functions:
-  shuffleBot:
-    handler: src/shufflebot/bot.Process
-    events:
-      - sns: tripshuffler-incoming-${opt:stage, 'dev'}
-  debug:
-    handler: src/mailer/mailer.previewSearchResultsEmail
+  createScanResult:
+    handler: src/controllers/ScanResult.CreateScanResult
     events:
       - http:
-          path: debug
-          method: get
-  syncRyanairTrips:
-    handler: src/functions/scrapers/trip/ryanairTrips.Sync
-  seedAirports:
-    handler: src/db/Seeds.SeedAirports
-  createCollections:
-    handler: src/db/Collections.CreateAll
-  dropCollections:
-    handler: src/db/Collections.DropAll
-  createIndexes:
-    handler: src/db/Indexes.CreateAll
+          path: scan/create
+          merhod: post
+  createAlert:
+    handler: src/controllers/Alert.CreateAlert
+    events:
+      - http:
+          path: scan/create
+          merhod: post
+
 resources:
   - ${file(resources/dynamodb-table.yml)}

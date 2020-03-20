@@ -1,3 +1,3 @@
-export const Hanlder = () => {
+export const CreateAlert = () => {
 
 }
