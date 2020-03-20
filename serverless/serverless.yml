@@ -12,7 +12,7 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: eu-central-1
   environment:
-    ONESIGNAL_API_KEY: ${env:ONESIGNAL_API_KEY}
+    TRUEPUSH_API_KEY: ${env:TRUEPUSH_API_KEY}
     DYNAMODB_TABLE_NAME: coronablue-${opt:stage, 'dev'}
   iamRoleStatements:
     - Effect: "Allow"
@@ -41,7 +41,7 @@ functions:
     handler: src/controllers/Alert.CreateAlert
     events:
       - http:
-          path: scan/create
+          path: alert/create
           method: post
 resources:
   - ${file(resources/dynamodb-table.yml)}
