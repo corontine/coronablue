@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@mobily/tifi": "^0.9.1",
-    "aws-sdk": "^2.620.0",
+    "aws-sdk": "^2.814.0",
     "date-fns": "^2.9.0"
   }
 }
